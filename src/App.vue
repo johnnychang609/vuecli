@@ -8,7 +8,7 @@
         <div class="col-md-10">
             
           <div class="card">
-            <div class="card-header">Johnny 練習</div>
+            <div class="card-header">Vue cli</div>
             <div class="card-body">
               <a-alert :message="messagers" type="success" v-show="display" />
               <div class="input-group mb-3" >
@@ -150,9 +150,9 @@ export default {
     async handsubmit(){
           this.messagers = null
           this.display = false
-          let rs=await this.axios.post('https://homeworkx.herokuapp.com/api/v1/order/Cvip/',{vip:this.vip,pcs:this.pcs,Pid:this.Pid}) .then((response) => {return response.data})
+          let rs=await this.axios.post('/api/v1/order/Cvip/',{vip:this.vip,pcs:this.pcs,Pid:this.Pid}) .then((response) => {return response.data})
           if(rs.pcstate){
-            await this.axios.post('https://homeworkx.herokuapp.com/api/v1/order/putorder/',{customer_id:this.clientid,qty:this.pcs,product_id:this.Pid})
+            await this.axios.post('/api/v1/order/putorder/',{customer_id:this.clientid,qty:this.pcs,product_id:this.Pid})
             .then((response) => {return response.data})
             .finally(() => {
               this.clientid=null
@@ -163,7 +163,7 @@ export default {
     },
     async checkbox(e,obj){
           let pid=obj.product_id  
-          await this.axios.put('https://homeworkx.herokuapp.com/api/v1/product/'+pid+'/',{vip:e}) .then((response) => {return response.data}) 
+          await this.axios.put('/api/v1/product/'+pid+'/',{vip:e}) .then((response) => {return response.data}) 
           this.tableData = this.tableData.map(x=> { 
                               if(pid===x.product_id){
                                 x.vip = e
@@ -191,16 +191,16 @@ export default {
             },      
             
            async dlitem(orderid,Pid,qty){
-              await this.axios.post('https://homeworkx.herokuapp.com/api/v1/order/delorder/',{orderid:orderid,qty:qty,Pid:Pid})
+              await this.axios.post('/api/v1/order/delorder/',{orderid:orderid,qty:qty,Pid:Pid})
               this.readdata()
               this.messagers ="商品到貨"
               this.display = true
             },
 
     async readdata(){
-          await this.axios.get('https://homeworkx.herokuapp.com/api/v1/product/')
+          await this.axios.get('/api/v1/product/')
           .then(response => (this.tableData = response.data.objects));
-          await this.axios.get('https://homeworkx.herokuapp.com/api/v1/order/')
+          await this.axios.get('/api/v1/order/')
           .then(response => (this.orderData = response.data.objects));
           
     },
