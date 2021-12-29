@@ -104,6 +104,7 @@ export default {
         orderData :[],
         checkedRows:[], 
         clientid:null,
+        arrayls:[]
         tops:{},
         vip:false,
         pcs:1,
