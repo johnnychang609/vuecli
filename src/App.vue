@@ -8,7 +8,7 @@
         <div class="col-md-10">
             
           <div class="card">
-            <div class="card-header">Vue cli</div>
+            <div class="card-header">Vue cli lesson</div>
             <div class="card-body">
               <a-alert :message="messagers" type="success" v-show="display" />
               <div class="input-group mb-3" >
