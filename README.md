@@ -1,4 +1,4 @@
-# Vue cli api
+# Vue cli api lesson
 
 ## Project setup
 ```
